@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>SafeChem Check</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Tesseract.js for offline OCR fallback -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+    <div id="app" class="app-container">
+
+        <!-- ===== HEADER ===== -->
+        <header class="app-header">
+            <div class="header-left">
+                <span class="app-logo">🧪 SafeChem Check</span>
+            </div>
+            <div class="header-right">
+                <button class="lang-btn active" data-lang="vi" aria-label="Tiếng Việt">🇻🇳 VN</button>
+                <button class="lang-btn" data-lang="en" aria-label="English">🇬🇧 EN</button>
+            </div>
+        </header>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="app-main">
+
+            <!-- Input Section -->
+            <section class="input-section">
+                <!-- Text inputs (keep as fallback) -->
+                <div class="input-group">
+                    <label for="primaryInput" class="input-label" data-i18n="labelPrimary">Sản phẩm / chất chính</label>
+                    <input type="text" id="primaryInput" class="input-field" placeholder="VD: Javel, Khí CO, Axit..." autocomplete="off" />
+                </div>
+                <div class="input-group">
+                    <label for="secondaryInput" class="input-label" data-i18n="labelSecondary">Sản phẩm phụ (tùy chọn)</label>
+                    <input type="text" id="secondaryInput" class="input-field" placeholder="VD: Vim, amoniac..." autocomplete="off" />
+                </div>
+
+                <!-- Image upload buttons -->
+                <div class="upload-row">
+                    <div class="upload-group">
+                        <label for="imageInput1" class="upload-btn" data-i18n="uploadLabel1">📷 Quét nhãn sản phẩm 1</label>
+                        <input type="file" id="imageInput1" accept="image/*" capture="environment" />
+                        <div id="preview1" class="image-preview empty"></div>
+                    </div>
+                    <div class="upload-group">
+                        <label for="imageInput2" class="upload-btn" data-i18n="uploadLabel2">📷 Quét nhãn sản phẩm 2</label>
+                        <input type="file" id="imageInput2" accept="image/*" capture="environment" />
+                        <div id="preview2" class="image-preview empty"></div>
+                    </div>
+                </div>
+
+                <!-- Analyze buttons -->
+                <button id="analyzeBtn" class="analyze-btn" data-i18n="btnAnalyze">Phân Tích Nguy Cơ 🔍</button>
+                <button id="scanBtn" class="analyze-btn scan-btn" data-i18n="btnScan">📸 Quét & Phân Tích (AI)</button>
+            </section>
+
+            <!-- Result Card -->
+            <section id="resultCard" class="result-card neutral">
+                <div id="placeholderDefault" class="result-placeholder">
+                    <span class="placeholder-icon">🔬</span>
+                    <p class="placeholder-text" data-i18n="placeholderDefault">Nhập chất hoặc quét nhãn sản phẩm</p>
+                </div>
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p data-i18n="loadingText">Đang phân tích với AI...</p>
+                </div>
+                <div id="resultContent" style="display: none;"></div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="app-footer">
+                <p data-i18n="footerDisclaimer">⚠️ Dữ liệu từ AI và cơ sở dữ liệu. Không thay thế tư vấn chuyên môn.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
